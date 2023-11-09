@@ -75,7 +75,7 @@ public class LoginController {
         UsersModel deltager = optional.get();
         String hash = deltager.getHash();
         String salt = deltager.getSalt();
-        
+
         if(passordService.erKorrektPassord(passord,salt,hash)){
             LoginUtil.loggInnBruker(request, deltager);
             request.getSession().setAttribute("mobil", mobil);

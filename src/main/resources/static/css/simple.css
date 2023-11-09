@@ -624,3 +624,14 @@ progress::-moz-progress-bar {
 progress:indeterminate::-moz-progress-bar {
   background-color: var(--accent-bg);
 }
+.button-style {
+  display: inline-block;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #007BFF;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
