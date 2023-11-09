@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <!-- <script src="js/myscript.js" defer></script>  -->
+    <title>Påmelding</title>
+    <link href="css/Style1.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h2>Påmelding</h2>
+<div th:if="${feilMelding}">
+    <p th:text="${feilMelding}" style="font-weight: bold"></p>
+</div>
+
+<form method="post" action="/registrer" onsubmit="return godkjennPassord()">
+    <fieldset>
+
+        <label>Fornavn</label>
+        <input type="text" name="fornavn" pattern="^[A-Z][a-zA-Z' ]+$" title="Du må ha med fornavn" required/>
+
+        <label>Etternavn</label>
+        <input type="text" name="etternavn" pattern="^[A-Z][a-zA-Z' ]+$" title="Du må ha med etternavn" required/>
+
+        <label>Mobil (8 siffer)</label>
+        <input type="text" name="mobil" pattern="^\d{8}$" title="Nummer er nødvendig" required/>
+
+        <label>Passord</label>
+        <!-- Tvinger passord til å ha en liten og en stor bokstav, ett spesialtegn, og være minst 8 langt-->
+        <input type="password" name="passord" id="passord"
+               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+               title="Passord er nødvendig og må ha 1 Stor bokstav, 1 Liten bokstav, spesialtegn og være 8 karakterer langt" required/>
+        <label>Passord repetert</label>
+        <input type="password" name="passordRepetert" id="passordRepetert"required/>
+
+        <label>Kjønn</label>
+        <input type="radio" name="kjonn" value="mann" checked="checked" />mann
+        <input type="radio" name="kjonn" value="kvinne" />kvinne
+
+        <br><br><button type="submit">Meld meg på</button>
+        <a href="/login">Naviger til logg inn</a>
+    </fieldset>
+</form>
+</body>
+</html>
+<script>
+    function godkjennPassord() {
+        var pass1 = document.getElementById("passord").value;
+        var pass2 = document.getElementById("passordRepetert").value;
+
+        if(pass1 !== pass2){
+            alert("Passordene må være like");
+            return false;
+        }
+        return true;
+    }
+</script>

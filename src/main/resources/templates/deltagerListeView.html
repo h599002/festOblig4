@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Deltagerliste</title>
+    <style>
+        .button-style {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #FFFFFF;
+            background-color: #007BFF;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <p>Logget inn som: <span th:text="${mobil}"></span></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Påmeldte</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="deltager : ${deltagere}">
+            <td th:text="${deltager.fornavn}"></td>
+            <td th:text="${deltager.etternavn}"></td>
+            <td th:text="${deltager.mobil}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/loggUt" class="button-style">Logg ut</a>
+
+</body>
+</html>
