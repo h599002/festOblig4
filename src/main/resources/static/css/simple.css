@@ -635,3 +635,6 @@ progress:indeterminate::-moz-progress-bar {
   border: none;
   cursor: pointer;
 }
+.logged-in-user {
+  background-color: green;
+}

@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-        <tr th:each="deltager : ${deltagere}">
+        <tr th:each="deltager : ${deltagere}" th:class="${deltager.mobil == mobil ? 'logged-in-user' : ''}">
             <td th:text="${deltager.fornavn}"></td>
             <td th:text="${deltager.etternavn}"></td>
             <td th:text="${deltager.mobil}"></td>

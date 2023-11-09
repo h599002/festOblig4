@@ -16,20 +16,21 @@
     <fieldset>
 
         <label>Fornavn</label>
-        <input type="text" name="fornavn" pattern="^[A-Z][a-zA-Z' ]+$" title="Du må ha med fornavn" required/>
+        <input type="text" name="fornavn" pattern="^[A-Z][a-zA-Z' ]+$" title="Du må ha med fornavn, det må ha stor forbokstav. Ingen andre spesialtegn enn '-'" required/>
 
         <label>Etternavn</label>
-        <input type="text" name="etternavn" pattern="^[A-Z][a-zA-Z' ]+$" title="Du må ha med etternavn" required/>
+        <input type="text" name="etternavn" pattern="^[A-Z][a-zA-Z' ]+$" title="Du må ha med etternavn, det må ha stor forbokstav. Ingen andre spesialtegn enn '-'" required/>
 
         <label>Mobil (8 siffer)</label>
-        <input type="text" name="mobil" pattern="^\d{8}$" title="Nummer er nødvendig" required/>
+        <input type="text" name="mobil" pattern="^\d{8}$" title="Nummer er nødvendig/har feil format. 8 siffer" required/>
 
         <label>Passord</label>
-        <!-- Tvinger passord til å ha en liten og en stor bokstav, ett spesialtegn, og være minst 8 langt-->
+        <!-- Tvinger passord til å ha en liten og en stor bokstav og være minst 8 langt-->
         <input type="password" name="passord" id="passord"
                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-               title="Passord er nødvendig og må ha 1 Stor bokstav, 1 Liten bokstav, spesialtegn og være 8 karakterer langt" required/>
+               title="Passord er nødvendig og må ha 1 Stor bokstav, 1 Liten bokstav og være 8 karakterer langt" required/>
         <label>Passord repetert</label>
+        <!-- Har ikke pattern på passordrepetert. Kunne hatt det, men skjemaet kan uansett ikke sendes hvis ikke passordene er like -->
         <input type="password" name="passordRepetert" id="passordRepetert"required/>
 
         <label>Kjønn</label>
@@ -43,6 +44,7 @@
 </body>
 </html>
 <script>
+    // Hindrer skjemaet å sende hvis passordene er ulike
     function godkjennPassord() {
         var pass1 = document.getElementById("passord").value;
         var pass2 = document.getElementById("passordRepetert").value;

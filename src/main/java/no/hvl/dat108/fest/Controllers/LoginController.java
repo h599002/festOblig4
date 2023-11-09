@@ -31,8 +31,20 @@ public class LoginController {
         return "loginView";
     }
     @GetMapping("/paameldt")
-    public String getPaameldtSide(Model model){
-        return "paameldtView";
+    public String getPaameldtSide(Model model, HttpSession session, HttpServletRequest request){
+        if (session.getAttribute("user") != null) {
+            // Sjekker om det er en valid session
+            String mobil = (String) request.getSession().getAttribute("mobil");
+            model.addAttribute("mobil",mobil);
+
+            List<UsersModel> liste = usersService.findAllDeltager();
+            model.addAttribute("deltagere",liste);
+
+            return "paameldtView";
+        } else {
+            // redirect til login
+            return "redirect:/login";
+        }
     }
     @GetMapping("/loggUt")
     public String loggUt(HttpSession session, RedirectAttributes ra){
@@ -41,14 +53,21 @@ public class LoginController {
         return "redirect:login";
     }
     @GetMapping("/deltagerliste")
-    public String deltagerListe(Model model, HttpServletRequest request){
-        String mobil = (String) request.getSession().getAttribute("mobil");
-        model.addAttribute("mobil",mobil);
+    public String deltagerListe(Model model,HttpSession session, HttpServletRequest request){
+        if (session.getAttribute("user") != null) {
+            // Sjekker om det er en valid session
+            String mobil = (String) request.getSession().getAttribute("mobil");
+            model.addAttribute("mobil",mobil);
 
-        List<UsersModel> liste = usersService.findAllDeltager();
-        model.addAttribute("deltagere",liste);
+            List<UsersModel> liste = usersService.findAllDeltager();
+            model.addAttribute("deltagere",liste);
 
-        return "deltagerListeView";
+            return "deltagerListeView";
+        } else {
+            // redirect til login
+            return "redirect:/login";
+        }
+
     }
 
 
